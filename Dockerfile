@@ -1,3 +1,8 @@
 FROM java:7
-COPY JavaHelloWorld.java .
-CMD ["java", "JavaHelloWorld"]
+COPY src /home/root/helloworldjava/src
+WORKDIR /home/root/helloworldjava
+RUN mkdir bin
+RUN javac -d bin src/HelloWorld.java
+RUN apt-get update
+
+CMD ["java", "-cp", "bin", "HelloWorld"]
